@@ -1,0 +1,44 @@
+ALGORITHM ReadSentence
+VAR
+    str: STRING
+    str_length: INTEGER
+    word_count: INTEGER
+    vowel_count: INTEGER
+    charS: CHAR
+    iteration: INTEGER
+BEGIN
+    Read(str)
+    iteration := 1
+    str_length := 0
+    word_count := 0 
+    vowel_count := 0
+
+    WHILE (iteration <= LENGTH(str)) DO
+        charS := str[iteration]
+
+        IF (charS = ' ') THEN
+            // Si le caractère est un espace, cela indique la fin d'un mot.
+            // Nous incrémentons donc le compteur de mots.
+            word_count := word_count + 1
+        END_IF
+
+        IF (charS = 'a' OR charS = 'e' OR charS = 'i' OR charS = 'o' OR charS = 'u') THEN
+            // Si le caractère est une voyelle, nous incrémentons le compteur de voyelles.
+            vowel_count := vowel_count + 1
+        END_IF
+
+        str_length := str_length + 1
+
+        iteration := iteration + 1
+    END_WHILE
+
+    // Vérifier si le dernier caractère de la phrase est un point.
+    IF (str[str_length] = '.') THEN
+        PRINT("Word count:", word_count)
+        PRINT("Vowel count:", vowel_count)
+        PRINT("Sentence length:", str_length)
+    ELSE
+        PRINT("La phrase doit se terminer par un point.")
+    END_IF
+
+END
